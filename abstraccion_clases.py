@@ -7,7 +7,7 @@ def run():
 
 
 
-print("este cmabio es para probar el git develop")
+
 
 if __name__ == '__main__':
     run()
