@@ -5,7 +5,7 @@ def run():
 
     lavadora = Lavadora().lavar()
 
-print("este cambio es para probar el git")
+print("este cambio viene de develop")
 if __name__ == '__main__':
     run()
 
