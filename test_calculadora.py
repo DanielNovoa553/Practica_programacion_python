@@ -1,23 +1,28 @@
-"""
-Funcion que calcula la distancia entre dos puntos
-"""
-class Coordenada:
-
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
-
-    def distancia(self, otra_cordenada):
-        x_diff = (self.x - otra_cordenada.x)**2
-        y_diff = (self.y - otra_cordenada.y)**2
-
-        return (x_diff + y_diff)**0.5
-
-if __name__ == '__main__':
-    cordenada_1 = Coordenada(3,30)
-    cordenada_2 = Coordenada(4,8)
-
-    print(cordenada_1.distancia(cordenada_2))
-    print(isinstance(cordenada_2, Coordenada))
+import math
 
 
+def comision_broker(self, min_price ):
+    min_price = 1000
+    sell_price = 1879
+    percentage_bono_broker = (sell_price - min_price) / 200
+    print(percentage_bono_broker)
+    percentage_bono_broker = math.floor(
+        percentage_bono_broker
+    ) if percentage_bono_broker >= 0 else math.ceil(percentage_bono_broker)
+    print(percentage_bono_broker)
+    comision = percentage_bono_broker * 100
+    print(comision)
+
+    if comision >= 0:
+        comision = format(comision, ",").replace(",", ".")
+        message = f"Aprobado: Bono ${comision}"
+        success = True
+    else:
+        comision = format(abs(comision), ",").replace(",", ".")
+        message = f"Rechazado: Castigo a comisión ${comision} Si quiere legalizar una oferta con este precio, debe solicitar una aprobación a BO."
+        success = False
+
+    return message, success
+
+prueba =  comision_broker(self=2000, min_price=1000)
+print(prueba)
