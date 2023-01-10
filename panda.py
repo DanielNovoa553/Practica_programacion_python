@@ -1,3 +1,5 @@
+from Scripts.rst2odt import output
+
 from conexion_db import connectdb # import the function connectdb from conexion_db.py
 import pandas as pd  # import pandas library
 
@@ -36,7 +38,8 @@ def insertar_datos_csv():
         nombre = row["name"]    # Mapea el valor de la columna name
         apellidos = row["lastname"]  # Mapea el valor de la columna lastname
         password = row["password"]  # Mapea el valor de la columna pass
-        query = f"INSERT INTO usuarios (nombre, apellidos, email, password) values ( '{nombre}', '{apellidos}', '{email}', '{password}')" # Query para insertar los datos
+        query = f"INSERT INTO usuarios (nombre, apellidos, email, password) values ( '{nombre}', '{apellidos}', " \
+                f"'{email}', '{password}')" # Query para insertar los datos
         cur.execute(query) # Ejecuta el query
         con.commit()  # Confirma la transacción
 
@@ -48,3 +51,14 @@ def insertar_datos_csv():
 
 if __name__ == '__main__':
     insertar_datos_csv()
+
+
+try:
+
+
+
+    except Exception as e:
+        print(e)
+        print('Ocurrio un error al crear al usuario en la BD')
+        output['message'] = 'Ocurrio un error al crear al usuario en la BD'
+        return jsonify(output), 500
