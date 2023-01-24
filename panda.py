@@ -14,6 +14,7 @@ def insertar_datos_csv():
     con = connectdb()  # conecta a la base de datos
     if not con:
         print(json.dumps("Error al conectar a la base de datos"))
+        exit()
     cur = con.cursor()  # crea el cursor
     for index, row in df.iterrows():  # Itera sobre el DataFrame y mapea los valores de cada fila
 
@@ -36,6 +37,7 @@ if __name__ == '__main__':  # Si el archivo es ejecutado directamente
         insertar_datos_csv()  # Ejecuta la función insertar_datos_csv
     except Exception as e:
         print("Ocurrió un error al insertar los datos: ", e)
+        exit()
 
 
 
