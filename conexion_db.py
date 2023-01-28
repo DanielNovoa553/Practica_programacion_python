@@ -16,7 +16,7 @@ def connectdb():
         conexion = pymysql.connect(host='localhost',
                                    user='root',
                                    password='',
-                                   db='peliculas')
+                                   db='test')
         print("Conectado a la base de datos")
         print("Conexión correcta")
         return conexion
@@ -25,3 +25,5 @@ def connectdb():
         print("Ocurrió un error al conectar, detalle del error: ", e)
         exit()
         return False
+
+

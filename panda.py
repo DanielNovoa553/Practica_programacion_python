@@ -39,5 +39,3 @@ if __name__ == '__main__':  # Si el archivo es ejecutado directamente
         print("Ocurrió un error al insertar los datos: ", e)
         exit()
 
-
-
