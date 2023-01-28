@@ -1,6 +1,5 @@
 # hacer un programa con pandas que lea una base de datos mysql y exporte los datos a un archivo excel
 import datetime
-
 import pandas as pd
 import os
 from conexion_db import connectdb
@@ -30,7 +29,6 @@ def exportar_datos_excel():
     # Export dataframe to excel
     writer = pd.ExcelWriter("datos.xlsx")
     df.to_excel(writer, "datos_"+date, index=False, header=True, freeze_panes=(1, 0))
-    writer.close()
 
     # Open file
     file = os.path.abspath("datos.xlsx")  # Get absolute path of file
@@ -38,6 +36,7 @@ def exportar_datos_excel():
     print("Datos exportados exitosamente a --> datos.xlsx ")
     con.close()  # Close connection
     cur.close()  # Close cursor
+    writer.close()
 
 
 if __name__ == '__main__':  # If file is executed directly
