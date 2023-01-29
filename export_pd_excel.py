@@ -20,34 +20,39 @@ def exportar_datos_excel():
         exit()  # Close program
 
     cur = con.cursor()  # create cursor
-    query = "SELECT * FROM usuarios"  # Query to select data
-    cur.execute(query)  # Execute query
-    results = cur.fetchall()  # Fetch all data
 
-    df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])   # Create dataframe
-
-    profit = df['profit'] = round((df['id'] * 100.34 / 2.5), 2)# Add date column
-    profit = profit.astype(str)  # Convert to string
-    profit = profit.apply(lambda x: x.replace('.', ','))    # Replace . with ,
-    df['profit'] = profit # Add profit column to dataframe
-
-    # Export dataframe to excel
-    writer = pd.ExcelWriter("C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")   #create excel file
-    df.to_excel(writer, "datos_"+date, index=False, header=True, freeze_panes=(1, 0), engine='csvwriter')   #write data to excel file
-    print(df)
-
-    fileName = os.path.abspath("C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")  # Get absolute path of file
-    os.startfile(fileName)  # Open file
-    print("Datos exportados exitosamente a --> datos.xlsx")
-
-    con.close()  # Close connection
-    cur.close()  # Close cursor
-    writer.close() # writer close
-
-
-if __name__ == '__main__':  # If file is executed directly
     try:
-        exportar_datos_excel()  # Execute function exportar_datos_excel
+        query = "SELECT * FROM usuarios"  # Query to select data
+        cur.execute(query)  # Execute query
+        results = cur.fetchall()  # Fetch all data
+
+        df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])  # Create dataframe
+
+        profit = df['profit'] = round((df['id'] * 100.34 / 2.5), 2)  # Add date column
+        profit = profit.astype(str)  # Convert to string
+        profit = profit.apply(lambda x: x.replace('.', ','))  # Replace . with ,
+        df['profit'] = profit  # Add profit column to dataframe
+
+        # Export dataframe to excel
+        writer = pd.ExcelWriter(
+            "C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")  # create xlsx file
+        df.to_excel(writer, "datos_" + date, index=False, header=True, freeze_panes=(1, 0),
+                    engine='csvwriter')  # write data to xlsx file
+        #   print(df)
+
+        fileName = os.path.abspath(
+            "C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")  # Get absolute path of file
+        os.startfile(fileName)  # Open file
+        print("Datos exportados exitosamente a --> datos.xlsx")
+
+        con.close()  # Close connection
+        cur.close()  # Close cursor
+        writer.close()  # writer close
     except Exception as e:
         print("Ocurrió un error al exportar los datos: ", e)
         exit()
+
+
+if __name__ == '__main__':  # If file is executed directly
+
+    exportar_datos_excel()  # Execute function exporta datos a excel

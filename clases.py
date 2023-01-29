@@ -1,20 +1,19 @@
-
 class Coordenada:
 
-    def __init__(self,x,y):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
 
     def distancia(self, otra_cordenada):
-        x_diff = (self.x - otra_cordenada.x)**2
-        y_diff = (self.y - otra_cordenada.y)**2
+        x_diff = (self.x - otra_cordenada.x) ** 2
+        y_diff = (self.y - otra_cordenada.y) ** 2
 
-        return (x_diff + y_diff)**0.5
+        return (x_diff + y_diff) ** 0.5
 
 
 class Lavadora:
 
-    def __init__(self): 
+    def __init__(self):
         pass
 
     def lavar(self, temperatura='Super caliente'):
@@ -38,8 +37,24 @@ class Lavadora:
         print('Centrifugando la ropa!!!')
 
     def _secar_ropa(self):
-        print ("Secando la Ropa!!!")
+        print("Secando la Ropa!!!")
 
     def _ciclo_terminado(self):
         print("Ciclo de lavado terminado!!!")
 
+
+class Rectangle:
+    """
+    classes that represent a rectangle
+        return f"Rectangle(width={self.width}, height={self.height})"
+    """
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+
+rect = Rectangle(5, 20)
+print(rect.area())  # Output: 200
