@@ -34,11 +34,14 @@ def exportar_datos_excel():
         df['profit'] = profit  # Add profit column to dataframe
 
         # Export dataframe to excel
-        writer = pd.ExcelWriter(
-            "C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")  # create xlsx file
+        writer = pd.ExcelWriter("C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")  # create xlsx file
         df.to_excel(writer, "datos_" + date, index=False, header=True, freeze_panes=(1, 0),
-                    engine='csvwriter')  # write data to xlsx file
+                    engine='xlswriter')  # write data to xlsx file
         #   print(df)
+        worksheet = writer.sheets['datos_' + date]  # Get worksheet
+        worksheet.set_column(0, 0, 20)
+        worksheet.set_column(1, 1, 15)
+        worksheet.set_column(2, 2, 20)
 
         fileName = os.path.abspath(
             "C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")  # Get absolute path of file
