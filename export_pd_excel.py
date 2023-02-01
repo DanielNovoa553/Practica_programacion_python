@@ -39,9 +39,11 @@ def exportar_datos_excel():
                     engine='xlswriter')  # write data to xlsx file
         #   print(df)
         worksheet = writer.sheets['datos_' + date]  # Get worksheet
-        worksheet.set_column(0, 0, 20)
-        worksheet.set_column(1, 1, 15)
+        worksheet.set_column(0, 0, 5)
+        worksheet.set_column(1, 1, 20)
         worksheet.set_column(2, 2, 20)
+        worksheet.set_column(3, 3, 15)
+        worksheet.set_column(4, 4, 15)
 
         fileName = os.path.abspath(
             "C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.xlsx")  # Get absolute path of file

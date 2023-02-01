@@ -59,16 +59,16 @@ def get_covid_data():
         print(f"Población: {population}")
         print(f"Países Afectados: {affected_countries}")
 
-        df = pd.DataFrame(data, index=[0])
-        df.drop(["updated", "tests", "testsPerOneMillion", "oneCasePerPeople", "oneDeathPerPeople", "oneTestPerPeople",
-                 "activePerOneMillion", "recoveredPerOneMillion", "criticalPerOneMillion", "casesPerOneMillion",
-                 "deathsPerOneMillion" ], axis=1, inplace=True)
-        print(df)
-        writer = pd.ExcelWriter("covid19.xlsx")
-        df.to_excel( "covid19.xlsx", index=False, header=True, freeze_panes=(1, 0), engine='xlsxwriter', sheet_name="covid19")
-        print("Datos exportados exitosamente a --> covid19.xlsx")
-        filename = os.path.abspath("covid19.xlsx")
-        os.startfile(filename)
+        # df = pd.DataFrame(data, index=[0])
+        # df.drop(["updated", "tests", "testsPerOneMillion", "oneCasePerPeople", "oneDeathPerPeople", "oneTestPerPeople",
+        #          "activePerOneMillion", "recoveredPerOneMillion", "criticalPerOneMillion", "casesPerOneMillion",
+        #          "deathsPerOneMillion" ], axis=1, inplace=True)
+        # print(df)
+        # writer = pd.ExcelWriter("covid19.xlsx")
+        # df.to_excel( "covid19.xlsx", index=False, header=True, freeze_panes=(1, 0), engine='xlsxwriter', sheet_name="covid19")
+        # print("Datos exportados exitosamente a --> covid19.xlsx")
+        # filename = os.path.abspath("covid19.xlsx")
+        # os.startfile(filename)
 
     else:
         # Manejar el error
