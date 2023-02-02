@@ -17,8 +17,7 @@ def connectdb():
                                    user='root',
                                    password='',
                                    db='test')
-        print("Conectado a la base de datos")
-        print("Conexión correcta")
+
         return conexion
 
     except (pymysql.err.OperationalError, pymysql.err.InternalError) as e:
