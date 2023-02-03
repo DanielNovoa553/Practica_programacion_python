@@ -7,16 +7,17 @@ cursor = con.cursor()
 usuarioArray = []
 hijoArray = []
 hobbyArray = []
+enfermedadArray = []
 
 cursor.execute("select * from usuarios ")
 usuarios = cursor.fetchall()
 
-for usuario in usuarios:
+for user in usuarios:
 
-    id_usuario = usuario[0]
-    nombre_usuario = usuario[1]
-    apellido_usuario = usuario[2]
-    usuario = usuario[3]
+    id_usuario = user[0]
+    nombre_usuario = user[1]
+    apellido_usuario = user[2]
+    usuario = user[3]
     cursor.execute("select * from hijos")
     hijos = cursor.fetchall()
     for hijo in hijos:
@@ -34,14 +35,27 @@ for usuario in usuarios:
                         'id_hobby': id_hobby,
                         'nombre': nombre_hobby
                     })
+            if id_usuario == hijo[1]:
+                cursor.execute("select * from enfermedad")
+                enfermedades = cursor.fetchall()
+                for enfermedad in enfermedades:
+                    id_enfermedad = enfermedad[0]
+                    nombre_enfermedad= enfermedad[2]
+                    if id_hijo == enfermedad[1]:
+                        enfermedadArray.append({
+                            'id_enfermedad': id_enfermedad,
+                            'nombre_enfermedad': nombre_enfermedad
+                        })
             hijoArray.append({
                 'id_hijo': id_hijo,
                 'nombre': nombre_hijo,
                 'apellido': apellido_hijo,
-                'hobbies': hobbyArray
+                'hobbies': hobbyArray,
+                'enfremedades': enfermedadArray
             })
 
             hobbyArray = []
+            enfermedadArray = []
 
     usuarioArray.append({
         'id_usuario': id_usuario,
