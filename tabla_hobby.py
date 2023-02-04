@@ -8,6 +8,7 @@ usuarioArray = []
 hijoArray = []
 hobbyArray = []
 enfermedadArray = []
+relojesArray = []
 
 cursor.execute("select * from usuarios ")
 usuarios = cursor.fetchall()
@@ -46,16 +47,32 @@ for user in usuarios:
                             'id_enfermedad': id_enfermedad,
                             'nombre_enfermedad': nombre_enfermedad
                         })
+                        if id_usuario == hijo[1]:
+                            cursor.execute("select * from relojes")
+                            relojes = cursor.fetchall()
+                            for reloj in relojes:
+                                id_reloj = reloj[0]
+                                marca_reloj = reloj[2]
+                                modelo_reloj = reloj[3]
+                                if id_hijo == reloj[1]:
+                                    relojesArray.append({
+                                        'id_reloj': id_reloj,
+                                        'marca_reloj': marca_reloj,
+                                        'modelo_reloj': modelo_reloj
+                                    })
+
             hijoArray.append({
                 'id_hijo': id_hijo,
                 'nombre': nombre_hijo,
                 'apellido': apellido_hijo,
                 'hobbies': hobbyArray,
-                'enfremedades': enfermedadArray
+                'enfremedades': enfermedadArray,
+                'relojes': relojesArray
             })
 
             hobbyArray = []
             enfermedadArray = []
+            relojesArray = []
 
     usuarioArray.append({
         'id_usuario': id_usuario,
@@ -67,4 +84,4 @@ for user in usuarios:
     hijoArray = []
 
 json_data = json.dumps(usuarioArray, indent=4)
-print('Usuarios:', json_data)
+print(str("Usuarios:"), json_data)
