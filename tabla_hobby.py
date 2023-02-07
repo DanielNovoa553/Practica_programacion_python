@@ -9,6 +9,7 @@ hijoArray = []
 hobbyArray = []
 enfermedadArray = []
 relojesArray = []
+mascotasArray = []
 
 cursor.execute("select * from usuarios ")
 usuarios = cursor.fetchall()
@@ -74,14 +75,31 @@ for user in usuarios:
             enfermedadArray = []
             relojesArray = []
 
+    cursor.execute("select * from mascotas")
+    mascotas = cursor.fetchall()
+    for mascota in mascotas:
+        id_mascota = mascota[0]
+        tipo_mascota = mascota[2]
+        nombre_mascota = mascota[3]
+        if id_usuario == mascota[1]:
+            mascotasArray.append({
+                'id_mascota': id_mascota,
+                'tipo': tipo_mascota,
+                'nombre': nombre_mascota
+
+            })
     usuarioArray.append({
         'id_usuario': id_usuario,
         'nombres': nombre_usuario,
         'apellido': apellido_usuario,
         'usuario': usuario,
-        'hijos': hijoArray
+        'mascotas': mascotasArray,
+        'hijos': hijoArray,
+
     })
+
     hijoArray = []
+    mascotasArray = []
 
 json_data = json.dumps(usuarioArray, indent=4)
 print(str("Usuarios:"), json_data)
