@@ -28,9 +28,9 @@ def exportar_datos_excel():
 
         df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])  # Create dataframe
 
-        profit = df['profit'] = round((df['id'] * 100.34 / 2.5), 2)  # Add date column
-        profit = profit.astype(str)  # Convert to string
-        profit = profit.apply(lambda x: x.replace('.', ','))  # Replace . with ,
+        profit = df['profit'] = df['id'] * 1000000.34 / 2.5  # Add date column
+        profit = pd.Series(profit)  # Convert to series to apply lambda function
+        profit = profit.apply(lambda x: "{:,.2f}".format(x))  # Replace . with ,
         df['profit'] = profit  # Add profit column to dataframe
 
         # Export dataframe to excel
