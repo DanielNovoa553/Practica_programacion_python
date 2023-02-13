@@ -25,16 +25,16 @@ def exportar_datos_csv():
 
     df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])   # Create dataframe
 
-    profit = df['profit'] = round((df['id'] * 100.34 / 2.5), 2)# Add date column
-    profit = profit.astype(str)  # Convert to string
-    profit = profit.apply(lambda x: x.replace('.', ','))    # Replace . with ,
-    df['profit'] = profit # Add profit column to dataframe
+    profit = df['profit'] = df['id'] * 1000000.34 / 2.5  # Add date column
+    profit = pd.Series(profit)  # Convert to series to apply lambda function
+    profit = profit.apply(lambda x: "{:,.2f}".format(x))  # Replace . with ,
+    df['profit'] = profit   # Add profit column to dataframe
 
     # Export dataframe to csv
     df.to_csv("C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.csv", index=False, header=True, decimal="," )   #write data to csv file
     print(df)
 
-    fileName = os.path.abspath("C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.csv")  # Get absolute path of file
+    fileName = os.path.abspath(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos+{date}")  # Get absolute path of file
     os.startfile(fileName)  # Open file
     print("Datos exportados exitosamente a --> datos.csv")
 
