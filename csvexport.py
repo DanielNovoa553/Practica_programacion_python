@@ -26,7 +26,6 @@ def exportar_datos_csv():
     namefile = 'datos' + date + '.csv'
 
     df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])   # Create dataframe
-    df = df.sort_values(by='id', ascending=False)  # Sort dataframe by id column
     profit = df['profit'] = df['id'] * 1000000.34 / 2.5  # Add date column
     profit = pd.Series(profit)  # Convert to series to apply lambda function
     profit = profit.apply(lambda x: "{:,.2f}".format(x))  # Replace . with ,
