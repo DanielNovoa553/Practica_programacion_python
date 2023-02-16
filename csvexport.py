@@ -22,10 +22,9 @@ def exportar_datos_csv():
     query = "SELECT * FROM usuarios"  # Query to select data
     cur.execute(query)  # Execute query
     results = cur.fetchall()  # Fetch all data
-<<<<<<< HEAD
+
     namefile = 'datos' + date + '.csv'
-=======
->>>>>>> 3723a6f49571a6836f947aad317348dc900c5ad3
+
     df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])   # Create dataframe
     df = df.sort_values(by='id', ascending=False)  # Sort dataframe by id column
     profit = df['profit'] = df['id'] * 1000000.34 / 2.5  # Add date column
@@ -35,20 +34,20 @@ def exportar_datos_csv():
     nameFile = "datos_" + date + ".csv"  # Create filename
 
     # Export dataframe to csv
-<<<<<<< HEAD
+
     df.to_csv(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{namefile}", index=False, header=True, decimal="," )   #write data to csv file
     print(df)
 
     NamPath = os.path.abspath(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{namefile}")  # Get absolute path of file
     os.startfile(NamPath)  # Open file
-=======
+
     df.to_csv(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{nameFile}", index=False, header=True, decimal=",",
               encoding='latin1')   #write data to csv file
     print(df)
 
     filePath = os.path.abspath(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{nameFile}")  # Get absolute path of file
     os.startfile(filePath)  # Open file
->>>>>>> 3723a6f49571a6836f947aad317348dc900c5ad3
+
     print("Datos exportados exitosamente a --> datos.csv")
 
     con.close()  # Close connection
