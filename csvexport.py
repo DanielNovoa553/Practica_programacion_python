@@ -23,25 +23,20 @@ def exportar_datos_csv():
     cur.execute(query)  # Execute query
     results = cur.fetchall()  # Fetch all data
 
-    namefile = 'datos' + date + '.csv'
-
     df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])   # Create dataframe
     profit = df['profit'] = df['id'] * 1000000.34 / 2.5  # Add date column
     profit = pd.Series(profit)  # Convert to series to apply lambda function
     profit = profit.apply(lambda x: "{:,.2f}".format(x))  # Replace . with ,
-    df = df.sort_values(by=['id'], ascending=False)
+
+    df = df.sort_values(by=['id'], ascending=False)# Sort dataframe by id column (descending
     df['profit'] = profit   # Add profit column to dataframe
+    print(df)
     nameFile = "datos_" + date + ".csv"  # Create filename
 
     # Export dataframe to csv
-
-    df.to_csv(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{namefile}", index=False, header=True, decimal="," )   #write data to csv file
-    print(df)
-    # Open file
-
-    df.to_csv(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{nameFile}", index=False, header=True, decimal=",",
+    df.to_csv(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{nameFile}", index=False, decimal=",",
               encoding='latin1')   #write data to csv file
-    print(df)
+
     filePath = os.path.abspath(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{nameFile}")  # Get absolute path of file
     os.startfile(filePath)  # Open file
 
