@@ -22,7 +22,7 @@ def exportar_datos_csv():
     query = "SELECT * FROM usuarios"  # Query to select data
     cur.execute(query)  # Execute query
     results = cur.fetchall()  # Fetch all data
-
+    namefile = 'datos' + date + '.csv'
     df = pd.DataFrame(results, columns=["id", "nombres", "apellidos", "usuario"])   # Create dataframe
 
     profit = df['profit'] = df['id'] * 1000000.34 / 2.5  # Add date column
@@ -31,11 +31,11 @@ def exportar_datos_csv():
     df['profit'] = profit   # Add profit column to dataframe
 
     # Export dataframe to csv
-    df.to_csv("C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos.csv", index=False, header=True, decimal="," )   #write data to csv file
+    df.to_csv(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{namefile}", index=False, header=True, decimal="," )   #write data to csv file
     print(df)
 
-    fileName = os.path.abspath(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/datos+{date}")  # Get absolute path of file
-    os.startfile(fileName)  # Open file
+    NamPath = os.path.abspath(f"C:/Users/danie/OneDrive/Documentos/Balance_Profit_Users/{namefile}")  # Get absolute path of file
+    os.startfile(NamPath)  # Open file
     print("Datos exportados exitosamente a --> datos.csv")
 
     con.close()  # Close connection
