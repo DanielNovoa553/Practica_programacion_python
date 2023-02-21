@@ -2,7 +2,7 @@
 import datetime
 import pandas as pd
 import os
-from conexion_db import connectdb
+from api_tabla_hobby.conexion_db import connectdb
 from datetime import datetime
 
 def exportar_datos_excel():

@@ -9,6 +9,8 @@ numpy = "*"
 mysql = "*"
 "mysql.connector" = "*"
 holidays = "*"
+cors = "*"
+flask-cors = "*"
 
 [dev-packages]
 

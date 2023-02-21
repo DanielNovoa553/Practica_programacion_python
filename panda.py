@@ -1,6 +1,6 @@
 import pandas as pd  # import pandas library
 import json
-from conexion_db import connectdb
+from api_tabla_hobby.conexion_db import connectdb
 
 df = pd.read_csv('panda.csv')  # read csv file
 
