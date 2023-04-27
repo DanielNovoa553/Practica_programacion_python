@@ -27,7 +27,7 @@ def root():
     """
     return {"mensaje": "Hola mundo"}
 
-@app.post("/libros/")
+@app.post("/libros/", status_code=status.HTTP_201_CREATED)
 def crear_libro(libro: Libro):
     """
     Función para crear un libro
@@ -40,7 +40,7 @@ def crear_libro(libro: Libro):
     exepction:
         message (str): Mensaje de error al crear el libro
     """
-
+    code = False
     conexion = connectdb()
     cursor = conexion.cursor()
     try:
@@ -51,14 +51,19 @@ def crear_libro(libro: Libro):
         id_libro = cursor.lastrowid
         conexion.commit()
         nombre_libro = libro.nombre_libro
+        code = True
         conexion.close()
-        return f"Libro {nombre_libro} insertado correctamente con id {id_libro}"
+        return {
+            "mensaje": f"Libro {nombre_libro} con id {id_libro} creado con exito",
+            "status": code
+
+        }
 
     except Exception as e:
         print("Ocurrió un error al insertar, detalle del error: ", e)
-        raise HTTPException(status_code=401, detail="Se produjo un error al insertar el libro")
+        raise HTTPException(status_code=401, detail=f"Se produjo un error al insertar el libro, Detalle de error: {e}")
 
-@app.get("/get_libros/", status_code=status.HTTP_201_CREATED)
+@app.get("/get_libros/", status_code=status.HTTP_200_OK)
 def obtener_libros():
     """
     Función para obtener los libros
@@ -95,7 +100,11 @@ def obtener_libros():
                 item["versiones"].append(item_version)
         conexion.close()
         code = True
-        return {"mensaje": "Libros obtenidos con exito","libros": data, "status": code}
+        return {
+            "mensaje": "Libros obtenidos con exito",
+            "libros": data,
+            "status": code
+        }
 
     except Exception as e:
         print("Ocurrió un error al obtener los libros, detalle del error: ", e)
