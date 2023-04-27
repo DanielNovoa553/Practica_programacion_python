@@ -1,6 +1,3 @@
-import json
-
-import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 from conexion import connectdb
@@ -57,6 +54,16 @@ def obtener_libros():
             for i in range(len(libro)):
                 item[cursor.description[i][0]] = libro[i]
             data.append(item)
+                # obtener las versiones de los libros
+            query = f"SELECT * FROM versiones WHERE id_libro = {libro[0]}"
+            cursor.execute(query)
+            versiones = cursor.fetchall()
+            item["versiones"] = []
+            for version in versiones:
+                item_version = {}
+                for i in range(len(version)):
+                    item_version[cursor.description[i][0]] = version[i]
+                item["versiones"].append(item_version)
         conexion.close()
         return {"libros": data}
 
