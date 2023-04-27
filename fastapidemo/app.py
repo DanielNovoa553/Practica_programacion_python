@@ -1,25 +1,47 @@
-from fastapi import FastAPI
+
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from conexion import connectdb
 
 app = FastAPI()
 
 class Libro(BaseModel):
+    """ Modelo para crear un libro
+
+        Args:
+                nombre_libro (str): Nombre del libro
+                autor_libro (str): Autor del libro
+                editorial_libro (str): Editorial del libro
+    """
     nombre_libro: str
     autor_libro: str
     editorial_libro: str
 
 @app.get("/")
 def root():
+    """
+    Función para probar el funcionamiento de la API
+    Returns:
+        message (str): Mensaje de prueba
+
+    """
     return {"mensaje": "Hola mundo"}
 
 @app.post("/libros/")
 def crear_libro(libro: Libro):
+    """
+    Función para crear un libro
+    Args:
+        libro ():{nombre_libro, autor_libro, editorial_libro}
+
+    Returns:
+        message (str): Mensaje de confirmación de creación del libro
+
+    exepction:
+        message (str): Mensaje de error al crear el libro
+    """
 
     conexion = connectdb()
-    if not conexion:
-        return {"mensaje": "Error al conectar a la base de datos"}
-
     cursor = conexion.cursor()
     try:
         query = f"INSERT INTO libro (nombre_libro, autor_libro, editorial_libro) VALUES ('{libro.nombre_libro}', " \
@@ -34,15 +56,22 @@ def crear_libro(libro: Libro):
 
     except Exception as e:
         print("Ocurrió un error al insertar, detalle del error: ", e)
-        return {"mensaje": "Error al insertar el libro"}
+        raise HTTPException(status_code=401, detail="Se produjo un error al insertar el libro")
 
-#obtener los libros llave valor en formato json
-@app.get("/get_libros/")
+@app.get("/get_libros/", status_code=status.HTTP_201_CREATED)
 def obtener_libros():
-    conexion = connectdb()
-    if not conexion:
-        return {"mensaje": "Error al conectar a la base de datos"}
+    """
+    Función para obtener los libros
 
+    Returns:
+        libros (list): Lista de libros y sus versiones
+
+    exepction:
+        message (str): Mensaje de error al obtener los libros
+
+    """
+    code = False
+    conexion = connectdb()
     cursor = conexion.cursor()
     try:
         query = f"SELECT * FROM libro"
@@ -65,8 +94,15 @@ def obtener_libros():
                     item_version[cursor.description[i][0]] = version[i]
                 item["versiones"].append(item_version)
         conexion.close()
-        return {"libros": data}
+        code = True
+        return {"mensaje": "Libros obtenidos con exito","libros": data, "status": code}
 
     except Exception as e:
         print("Ocurrió un error al obtener los libros, detalle del error: ", e)
-        return {"mensaje": "Error al obtener los libros"}
+        raise HTTPException(status_code=500, detail=f"Se produjo un error al obtener los libros, Detalle de error: {e}")
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="localhost", reload=True)

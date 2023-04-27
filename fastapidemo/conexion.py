@@ -1,4 +1,6 @@
 # hacer una funcion que se conecte a una base de datos mysql y maneje excepciones
+from fastapi import FastAPI, HTTPException
+
 import pymysql
 
 
@@ -22,5 +24,5 @@ def connectdb():
 
     except (pymysql.err.OperationalError, pymysql.err.InternalError) as e:
         print("Ocurrió un error al conectar, detalle del error: ", e)
-        exit()
-        return False
+        raise HTTPException(status_code=503, detail=f"Error al conectar a la base de datos. Detalle del error: {e}")
+
