@@ -11,6 +11,7 @@ mysql = "*"
 holidays = "*"
 cors = "*"
 flask-cors = "*"
+pydantic = "*"
 
 [dev-packages]
 
