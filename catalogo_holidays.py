@@ -1,11 +1,11 @@
 rename_holidays = {
-    "Año Nuevo [New Year's Day]": "Año Nuevo Vida nueva",
-    "Día de la Constitución [Constitution Day]": "Día de la Constitución de los Estados Unidos Mexicanos",
-    "Natalicio de Benito Juárez [Benito Juárez's birthday]": "Dia de natalicio de Benito Juárez",
-    "Día del Trabajo [Labour Day]": "Día del Trabajo en México",
-    "Día de la Independencia [Independence Day]": "Día de la Independencia de los Estados Unidos Mexicanos",
-    "Día de la Revolución [Revolution Day]": "Día de la Revolución Mexicana",
-    "Transmisión del Poder Ejecutivo Federal [Change of Federal Government]": "Transmisión del Poder Ejecutivo Federal",
-    "Navidad [Christmas]": "Navidad en México"
+    "Año Nuevo": "Año Nuevo Vida nueva",
+    "Día de la Constitución": "Día de la Constitución de los Estados Unidos Mexicanos",
+    "Natalicio de Benito Juárez": "Dia de natalicio de Benito Juárez",
+    "Día del Trabajo": "Día del Trabajo en México",
+    "Día de la Independencia": "Día de la Independencia de los Estados Unidos Mexicanos",
+    "Día de la Revolución": "Día de la Revolución Mexicana",
+    "Transmisión del Poder Ejecutivo Federal": "Transmisión del Poder Ejecutivo Federal en México",
+    "Navidad": "Navidad en México"
 
 }

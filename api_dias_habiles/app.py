@@ -14,13 +14,13 @@ def get_holidays():
 # Definir rango de fechas
     fecha_inicio = date(2023, 2, 1)
     fecha_fin = date(2023, 2, 7)
-    output = {'response': False}
+    output = {'response': False} # diccionario de salida
     # Crear lista de fechas
-    rango_fechas = pd.date_range(start=fecha_inicio, end=fecha_fin, freq='D').to_pydatetime().tolist()
+    rango_fechas = pd.date_range(start=fecha_inicio, end=fecha_fin, freq='D').to_pydatetime().tolist() #lista de fechas
 
     # Identificar días hábiles y no hábiles
-    calendario = pd.DataFrame({'fecha': rango_fechas})
-    calendario['no_habil'] = calendario['fecha'].dt.dayofweek.isin([5, 6])
+    calendario = pd.DataFrame({'fecha': rango_fechas}) # Crear dataframe con las fechas
+    calendario['no_habil'] = calendario['fecha'].dt.dayofweek.isin([5, 6]) # Identificar los no hábiles
 
 
     #mapear los no hábiles y habiles en un diccionario

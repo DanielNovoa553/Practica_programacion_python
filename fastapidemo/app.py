@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from conexion import connectdb
@@ -44,9 +43,10 @@ def crear_libro(libro: Libro):
     conexion = connectdb()
     cursor = conexion.cursor()
     try:
+
         query = f"INSERT INTO libro (nombre_libro, autor_libro, editorial_libro) VALUES ('{libro.nombre_libro}', " \
                 f"'{libro.autor_libro}', '{libro.editorial_libro}')"
-
+        print(query)
         cursor.execute(query)
         id_libro = cursor.lastrowid
         conexion.commit()
@@ -80,24 +80,33 @@ def obtener_libros():
     cursor = conexion.cursor()
     try:
         query = f"SELECT * FROM libro"
+        print(query)
         cursor.execute(query)
         libros = cursor.fetchall()
         data = []
         for libro in libros:
-            item ={}
-            for i in range(len(libro)):
-                item[cursor.description[i][0]] = libro[i]
-            data.append(item)
+            item = {}
+            # Verificar que la tupla libro tenga al menos un elemento
+            if libro and len(libro) > 0:
+                # Imprimir la tupla libro
+                print(libro)
+                for i in range(len(libro)):
+                    item[cursor.description[i][0]] = libro[i]
+                data.append(item)
                 # obtener las versiones de los libros
-            query = f"SELECT * FROM versiones WHERE id_libro = {libro[0]}"
-            cursor.execute(query)
-            versiones = cursor.fetchall()
-            item["versiones"] = []
-            for version in versiones:
-                item_version = {}
-                for i in range(len(version)):
-                    item_version[cursor.description[i][0]] = version[i]
-                item["versiones"].append(item_version)
+                query = f"SELECT * FROM versiones WHERE id_libr = {libro[0]}"
+                cursor.execute(query)
+                versiones = cursor.fetchall()
+                item["versiones"] = []
+                for version in versiones:
+                    item_version = {}
+                    for i in range(len(version)):
+                        item_version[cursor.description[i][0]] = version[i]
+                        # quitar el id del libro de la version
+                        if cursor.description[i][0] == "id_libro":
+                            del item_version[cursor.description[i][0]]
+                    item["versiones"].append(item_version)
+
         conexion.close()
         code = True
         return {
@@ -108,7 +117,10 @@ def obtener_libros():
 
     except Exception as e:
         print("Ocurrió un error al obtener los libros, detalle del error: ", e)
-        raise HTTPException(status_code=500, detail=f"Se produjo un error al obtener los libros, Detalle de error: {e}")
+        raise HTTPException(status_code=500, detail={"mensaje": f"Se produjo un error al obtener los libros, Detalle de error: {e}",
+                                                     "status": code
+                                                     } )
+
 
 
 if __name__ == "__main__":
