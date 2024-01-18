@@ -1,0 +1,66 @@
+
+.card{
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 600px;
+    height : 400px;
+    padding: 20px;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-top: 10%;
+
+}
+.card-title{
+    text-align: center;
+}
+
+
+.btn-primary{
+    margin-top : 30px;
+    align : center;
+
+}
+
+body {
+  /* Ajustar el tamaño y centrar la imagen de fondo con gradiente opaco */
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+  ), url('../static/images/login.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 15px;
+}
+
+.sidebar-item {
+    margin-bottom: 10px;
+}
+
+.dashboard-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+
+/* Agrega el resto de tus estilos para el formulario login aquí */
+
+

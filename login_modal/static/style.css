@@ -1,0 +1,37 @@
+
+.card{
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 600px;
+    height : 400px;
+    padding: 20px;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-top: 10%;
+
+}
+.card-title{
+    text-align: center;
+}
+
+
+.btn-primary{
+    margin-top : 30px;
+    align : center;
+    margin-left: 35%;
+}
+
+body {
+  /* Ajustar el tamaño y centrar la imagen de fondo con gradiente opaco */
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)
+  ), url('../static/imagenes/login.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+}
+
+
+/* Agrega el resto de tus estilos para el formulario login aquí */
+
+

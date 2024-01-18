@@ -1,7 +1,7 @@
 import json
 from conexion_db import connectdb
 
-# Establecer conexión con la base de datos
+    # Establecer conexión con la base de datos
 con = connectdb()
 cursor = con.cursor()
 usuarioArray = []
@@ -11,7 +11,7 @@ enfermedadArray = []
 relojesArray = []
 mascotasArray = []
 
-cursor.execute("select * from usuarios ")
+cursor.execute("select * from usuarios order by id_usuario")
 usuarios = cursor.fetchall()
 
 for user in usuarios:
@@ -88,6 +88,7 @@ for user in usuarios:
                 'nombre': nombre_mascota
 
             })
+
     usuarioArray.append({
         'id_usuario': id_usuario,
         'nombres': nombre_usuario,
@@ -101,5 +102,6 @@ for user in usuarios:
     hijoArray = []
     mascotasArray = []
 
-json_data = json.dumps(usuarioArray, indent=4)
+
+json_data = json.dumps(usuarioArray, indent=4, default=str, ensure_ascii=False)
 print(str("Usuarios:"), json_data)

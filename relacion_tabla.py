@@ -1,6 +1,6 @@
 
 import json
-from conexion_db import connectdb
+from api_tabla_hobby.conexion_db import connectdb
 
 # Establecer conexión con la base de datos
 con = connectdb()

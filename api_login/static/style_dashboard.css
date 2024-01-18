@@ -1,0 +1,92 @@
+
+body{
+    background-color: #ECF0F1 ;
+}
+
+
+.d-flex{
+    display: flex;
+    flex-block: 0;
+    margin-right: 25%;
+    width: 350px;
+}
+
+.card{
+    width: 300px;
+    height : 300px;
+    padding: 20px;
+    border-radius: 10px;
+    /* poner un elemento al lado del otro */
+    display: inline-block;
+    margin-top: 10%;
+    margin-left: 1%;
+    align: center;
+    
+    
+    
+}
+
+.container-cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bi-people
+{
+    height: 56px;
+    width: 56px;
+    align: center;
+    justify-content: center;
+    horizontal-align: middle;
+    margin-left: 37%;
+    color: green;
+
+}
+
+.bi-boxes
+{
+    height: 56px;
+    width: 56px;
+    align: center;
+    color: green;
+    margin-left: 37%;
+
+    }
+
+.bi-clipboard2-check
+{
+    height: 56px;
+    width: 56px;
+    align: center;
+    color: green;
+    margin-left: 37%;
+
+    }
+
+.bi-gear
+{
+    height: 56px;
+    width: 56px;
+    align: center;
+    color: green;
+    margin-left: 37%;
+
+    }
+
+.card-title{
+    text-align: center;
+    
+}
+
+.card-text{
+    
+    text-align: justify
+}
+
+.btn-primary{
+   
+    margin-left: 25%;
+
+}

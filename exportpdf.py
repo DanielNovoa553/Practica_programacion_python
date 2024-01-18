@@ -1,5 +1,5 @@
 from fpdf import FPDF
-from conexion_db import connectdb
+from api_tabla_hobby.conexion_db import connectdb
 # Conexión a la base de datos
 
 

@@ -8,6 +8,10 @@ pandas = "*"
 numpy = "*"
 mysql = "*"
 "mysql.connector" = "*"
+holidays = "*"
+cors = "*"
+flask-cors = "*"
+pydantic = "*"
 
 [dev-packages]
 
