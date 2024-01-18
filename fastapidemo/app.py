@@ -114,6 +114,7 @@ def obtener_libros():
             "libros": data,
             "status": code
         }
+    # retornar un 200 si hay libros, si no hay retornar un 404
 
     except Exception as e:
         print("Ocurrió un error al obtener los libros, detalle del error: ", e)

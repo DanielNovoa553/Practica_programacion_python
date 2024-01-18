@@ -13,7 +13,7 @@ class TicTacToe:
         for i in range(3):
             for j in range(3):
                 self.buttons[i][j] = tk.Button(
-                    self.window, text=" ", font=("Helvetica", 25), width=10, height=5,
+                    self.window, text=" ", font=("Helvetica", 25), width=8, height=4,
                     command=lambda row=i, col=j: self.on_button_click(row, col)
                 )
                 self.buttons[i][j].grid(row=i, column=j)

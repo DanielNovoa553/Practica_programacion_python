@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 import json
 from datetime import datetime
+import sys
 
 
 def get_covid_data():
@@ -109,7 +110,9 @@ def get_covid_data():
 
         else:
             # Manejar el error
-            print("Error al obtener la información:", response.status_code)
+            print("Error al obtener la información del Api del Covid 19 Mundial:", response.status_code)
+            input("Presione enter para salir...")
+            sys.exit(1)
 
     except requests.exceptions.RequestException as e:
         # Manejar el error
