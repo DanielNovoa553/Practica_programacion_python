@@ -24,8 +24,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install build
 
+    - name: Change directory to the project
+      run: cd CursoPOO
+
     - name: Build package
-      run: python -m build C:\Users\danie\PycharmProjects\CursoPOO
+      run: python -m build
 
     # Agregar aprobación manual
     - name: Request Approval
